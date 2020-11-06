@@ -16,7 +16,7 @@ function SmurfList() {
   return (
     <div>
       {smurfs.map((smurf) => (
-        <Smurf smurf={smurf} />
+        <Smurf key={smurf.id} smurf={smurf} />
       ))}
     </div>
   );
