@@ -48,6 +48,7 @@ export default (state = initialState, action) => {
     case POSTING_SMURF_SUCCESS:
       return {
         ...state,
+        smurfs: action.payload,
         isPosting: false,
       };
     case POSTING_SMURF_FAILURE:

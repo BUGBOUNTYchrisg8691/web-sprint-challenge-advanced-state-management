@@ -30,7 +30,7 @@ export function postSmurfs(smurf) {
       .post("http://localhost:3333/smurfs", smurf)
       .then((res) => {
         console.log("Post Successfull ==> ", res);
-        dispatch(postSuccess());
+        dispatch(postSuccess(res.data));
       })
       .catch((err) => {
         dispatch(postFailure(err.meesage));
@@ -62,8 +62,8 @@ function startPost() {
   return { type: POSTING_SMURF_START };
 }
 
-function postSuccess() {
-  return { type: POSTING_SMURF_SUCCESS };
+function postSuccess(payload) {
+  return { type: POSTING_SMURF_SUCCESS, payload: payload };
 }
 
 function postFailure(payload) {

@@ -8,12 +8,10 @@ import Smurf from "./Smurf";
 function SmurfList() {
   const smurfs = useSelector((state) => state.smurfs);
   const dispatch = useDispatch();
-  const isPosting = useSelector((state) => state.isPosting);
 
   useEffect(() => {
-    console.log(isPosting);
     dispatch(fetchSmurfs());
-  }, [isPosting]);
+  }, []);
 
   return (
     <div>
