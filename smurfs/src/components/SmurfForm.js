@@ -12,6 +12,7 @@ function SmurfForm() {
     const newSmurf = {
       ...form,
       height: `${form.height}cm`,
+      age: Number(form.age),
     };
     dispatch(postSmurfs(newSmurf));
     dispatch(clearForm());
