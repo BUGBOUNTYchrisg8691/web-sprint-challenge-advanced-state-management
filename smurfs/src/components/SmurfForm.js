@@ -6,6 +6,7 @@ import { postSmurfs, onChange, clearForm } from "./../store/actions";
 function SmurfForm() {
   const dispatch = useDispatch();
   const form = useSelector((state) => state.form);
+  const error = useSelector((state) => state.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ function SmurfForm() {
   };
   return (
     <form onSubmit={handleSubmit}>
+      {error && <div>`${error}`</div>}
       <label>
         Name
         <input
