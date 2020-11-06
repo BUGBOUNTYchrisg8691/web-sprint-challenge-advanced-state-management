@@ -62,7 +62,7 @@ function startPost() {
   return { type: POSTING_SMURF_START };
 }
 
-function postSuccess() {
+function postSucces() {
   return { type: POSTING_SMURF_SUCCESS };
 }
 

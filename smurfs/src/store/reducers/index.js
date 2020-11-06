@@ -6,6 +6,7 @@ import {
   POSTING_SMURF_FAILURE,
   ONCHANGE,
   CLEAR_FORM,
+  POSTING_SMURF_SUCCESS,
 } from "./../actions";
 
 const initialState = {
@@ -43,6 +44,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isPosting: true,
+      };
+    case POSTING_SMURF_SUCCESS:
+      return {
+        ...state,
+        isPosting: false,
       };
     case POSTING_SMURF_FAILURE:
       return {
