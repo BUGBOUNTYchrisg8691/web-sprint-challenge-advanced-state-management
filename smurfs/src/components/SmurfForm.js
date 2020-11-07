@@ -1,12 +1,26 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-import { postSmurfs, onChange, clearForm } from "./../store/actions";
+import * as actions from "./../store/actions";
+import { BASE_URL } from "./../constants";
 
 function SmurfForm() {
   const dispatch = useDispatch();
   const form = useSelector((state) => state.form);
   const error = useSelector((state) => state.error);
+
+  const postSmurfs = (smurf) => (dispatch) => {
+    dispatch(actions.startPost());
+    axios
+      .post(BASE_URL, smurf)
+      .then((res) => {
+        dispatch(actions.postSuccess(res.data));
+      })
+      .catch((err) => {
+        dispatch(actions.postFailure(err.message));
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +30,7 @@ function SmurfForm() {
       age: Number(form.age),
     };
     dispatch(postSmurfs(newSmurf));
-    dispatch(clearForm());
+    dispatch(actions.clearForm());
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -27,7 +41,7 @@ function SmurfForm() {
           type="text"
           name="name"
           value={form.name}
-          onChange={(e) => dispatch(onChange(e))}
+          onChange={(e) => dispatch(actions.onChange(e))}
         />
       </label>
       <label>
@@ -36,7 +50,7 @@ function SmurfForm() {
           type="text"
           name="age"
           value={form.age}
-          onChange={(e) => dispatch(onChange(e))}
+          onChange={(e) => dispatch(actions.onChange(e))}
         />
       </label>
       <label>
@@ -45,7 +59,7 @@ function SmurfForm() {
           type="text"
           name="height"
           value={form.height}
-          onChange={(e) => dispatch(onChange(e))}
+          onChange={(e) => dispatch(actions.onChange(e))}
         />
       </label>
       <button>Add Smurf</button>

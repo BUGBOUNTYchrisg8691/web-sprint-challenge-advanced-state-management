@@ -7,7 +7,7 @@ import {
   ONCHANGE,
   CLEAR_FORM,
   POSTING_SMURF_SUCCESS,
-} from "./../actions";
+} from "./../../constants";
 
 const initialState = {
   smurfs: [],
